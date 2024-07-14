@@ -1,4 +1,4 @@
-import { StyleSheet, ScrollView } from "react-native";
+import { StyleSheet, FlatList, SafeAreaView } from "react-native";
 
 import { homeFeed } from "@/app/mock";
 import React from "react";
@@ -8,11 +8,13 @@ import { OtherColors } from "@/constants/Colors";
 Tweet;
 export default function HomeScreen() {
   return (
-    <ScrollView style={styles.container}>
-      {homeFeed.map((i, n) => (
-        <Tweet data={i} key={n} />
-      ))}
-    </ScrollView>
+    <SafeAreaView  style={styles.container}>
+      <FlatList
+        data={homeFeed}
+        renderItem={({item}) => <Tweet data={item} />}
+        keyExtractor={item => item.id}
+      />
+    </SafeAreaView >
   );
 }
 
