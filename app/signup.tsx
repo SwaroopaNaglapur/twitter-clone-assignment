@@ -5,31 +5,31 @@ import React from 'react'
 import { Pressable, SafeAreaView, StyleSheet, Switch, Text, TextInput, View } from 'react-native'
 const logo = require("../assets/images/x-twitter.svg");
 
-export default function Welcome() {
+export default function Signup() {
     const [username, setUsername]= React.useState("");
     const [password, setPassword]= React.useState("");
+    const [confirmPassword, setConfirmPassword]= React.useState("");
 
-  const loginCallback = () => {
+  const registerCallback = () => {
     // handle from DB
-    if ((username === 'test' && password === 'test') || (username === 'swaru' && password === 'swaru')) {
-      router.navigate('/home');
+    if (username.length && password.length && confirmPassword.length && (password === confirmPassword)) {
+      router.navigate('/signin');
     }
   }
   return (
     <SafeAreaView style={styles.container}>
         <FontAwesome6 name='square-x-twitter' size={170} resizeMode='contain' />
-        {/* <Image source={logo} style={{height: 160, width: 170}} resizeMode='contain' /> */}
-        <Text style={styles.title}>Welcome to X!</Text>
+        <Text style={styles.title}>Welcome new user!</Text>
         <View style={styles.inputView}>
-            <TextInput style={styles.input} placeholder='EMAIL OR USERNAME' value={username} onChangeText={setUsername} />
-            <TextInput style={styles.input} placeholder='PASSWORD' secureTextEntry value={password} onChangeText={setPassword}/>
+            <TextInput style={styles.input} placeholder='NEW EMAIL OR USERNAME' value={username} onChangeText={setUsername} />
+            <TextInput style={styles.input} placeholder='NEW PASSWORD' secureTextEntry value={password} onChangeText={setPassword}/>
+            <TextInput style={styles.input} placeholder='CONFIRM PASSWORD' secureTextEntry value={confirmPassword} onChangeText={setConfirmPassword}/>
         </View>
         <View style={styles.buttonView}>
-            <Pressable style={styles.button} onPress={loginCallback}>
-                <Text style={styles.buttonText}>LOGIN</Text>
+            <Pressable style={styles.button} onPress={registerCallback}>
+                <Text style={styles.buttonText}>Register</Text>
             </Pressable>
         </View>
-        <Text style={styles.footerText}>Don't Have Account?<Text style={styles.signup} onPress={() => router.navigate('/signup')}> Sign Up</Text></Text>
     </SafeAreaView>
   )
 }
